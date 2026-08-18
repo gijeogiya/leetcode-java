@@ -77,6 +77,40 @@ public class main {
 
 ### 순열과 조합
 #### 순열
+```java
+public class Main {
+    static int[] arr = {1, 2, 3, 4};    // n에 해당하는 배열
+    static int[] output;                // r개를 뽑은 배열
+    static boolean[] visited;            // 방문 처리 배열
+    static int N = 4, R = 3;            // n은 4, r은 3
+
+    public static void main(String[] args) {
+        output = new int[R];        // r개를 뽑은 배열 초기화
+        visited = new boolean[N];    // 방문 처리 배열 초기화
+
+        ...
+    }
+}
+
+static void permutation(int depth, int n, int r) {
+    // 순열이 완성된 경우
+    if(depth == r) {
+        System.out.println(Arrays.toString(output));
+        return;
+    }
+
+    // 0부터 n까지 반복
+    for(int i = 0; i < n; i++) {
+        // 방문하지 않은 값이면 넣기
+        if(!visited[i]) {
+            visited[i] = true;    // 방문 처리
+            output[depth] = arr[i];    // 현재 depth를 인덱스로 사용
+            permutation(depth + 1, n, r);    // depth + 1를 전달
+            visited[i] = false; // 다음 순열을 뽑기위해 방문처리 제거
+        }
+    }
+}
+```
 #### 조합
 ```java
         for(int i=0; i<nums.length-1; i++){
